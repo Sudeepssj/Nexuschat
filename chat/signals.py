@@ -9,7 +9,10 @@ AVATAR_COLORS = ['#6C63FF','#FF6584','#43D9AD','#FFB547','#4ECDC4','#FF6B6B']
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.get_or_create(
-            user=instance,
-            defaults={'avatar_color': random.choice(AVATAR_COLORS)}
-        )
+        try:
+            UserProfile.objects.get_or_create(
+                user=instance,
+                defaults={'avatar_color': random.choice(AVATAR_COLORS)}
+            )
+        except Exception:
+            pass

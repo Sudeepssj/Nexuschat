@@ -139,17 +139,21 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            profile = UserProfile.objects.create(
+            # get_or_create in case signal already made the profile
+            profile, _ = UserProfile.objects.get_or_create(
                 user=user,
-                avatar_color=random.choice(AVATAR_COLORS)
+                defaults={'avatar_color': random.choice(AVATAR_COLORS)}
             )
             login(request, user)
-            # Create a welcome room
-            welcome, _ = Room.objects.get_or_create(
-                slug='general',
-                defaults={'name': 'General', 'room_type': 'group', 'created_by': user, 'description': 'Welcome to the chat!'}
-            )
-            welcome.members.add(user)
+            # Create a welcome general room
+            try:
+                welcome, _ = Room.objects.get_or_create(
+                    slug='general',
+                    defaults={'name': 'General', 'room_type': 'group', 'created_by': user, 'description': 'Welcome to the chat!'}
+                )
+                welcome.members.add(user)
+            except Exception:
+                pass
             return redirect('index')
     else:
         form = RegisterForm()

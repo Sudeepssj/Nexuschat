@@ -143,7 +143,7 @@
       <span class="nav-badge" id="notif-badge" style="display:none">0</span>
     </a>
     <div class="nav-spacer"></div>
-    <a href="/admin/" class="nav-avatar" style="background: {{ profile.avatar_color }}" title="{{ request.user.username }}">{{ profile.avatar_initials }}</a>
+    <div class="nav-avatar" style="background: {{ profile.avatar_color }}" title="{{ request.user.username }}">{{ profile.avatar_initials }}</div>
     <form method="post" action="/logout/" style="margin:0">
       {% csrf_token %}
       <button type="submit" class="logout-btn" title="Logout">
