@@ -54,7 +54,6 @@
     overflow: hidden;
   }
 
-  /* ── Nav Rail ── */
   .nav-rail {
     background: var(--bg-1);
     border-right: 1px solid var(--border);
@@ -117,8 +116,24 @@
     text-decoration: none;
   }
   .nav-avatar:hover { border-color: var(--accent); }
+  .logout-btn {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-3);
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    padding: 0;
+  }
+  .logout-btn:hover {
+    background: rgba(255,101,132,0.15);
+    color: var(--accent-3);
+    border-color: rgba(255,101,132,0.2);
+  }
+  .logout-btn svg { width: 20px; height: 20px; }
 
-  /* ── Sidebar ── */
   .sidebar {
     background: var(--bg-1);
     border-right: 1px solid var(--border);
@@ -135,9 +150,7 @@
     color: var(--text-1);
     margin-bottom: 12px;
   }
-  .search-box {
-    position: relative;
-  }
+  .search-box { position: relative; }
   .search-box input {
     width: 100%;
     background: var(--bg-2);
@@ -198,10 +211,7 @@
     position: relative;
   }
   .room-item:hover { background: var(--bg-2); }
-  .room-item.active {
-    background: var(--bg-3);
-    border-left-color: var(--accent);
-  }
+  .room-item.active { background: var(--bg-3); border-left-color: var(--accent); }
   .room-avatar {
     width: 36px; height: 36px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
@@ -236,14 +246,12 @@
   .user-dot.offline { background: var(--offline); }
   .user-name { font-size: 13px; color: var(--text-2); }
 
-  /* ── Main Content ── */
   .main-area {
     display: flex; flex-direction: column;
     background: var(--bg-0);
     overflow: hidden;
   }
 
-  /* ── Welcome Screen ── */
   .welcome-screen {
     flex: 1; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
@@ -265,7 +273,6 @@
   }
   .welcome-sub { color: var(--text-2); font-size: 15px; max-width: 360px; }
 
-  /* Forms */
   .form-input {
     width: 100%; background: var(--bg-2);
     border: 1px solid var(--border);
@@ -328,7 +335,6 @@ function showToast(msg, type='info') {
   setTimeout(() => t.remove(), 3500);
 }
 
-// Search
 const searchInput = document.getElementById('searchInput');
 const searchResults = document.getElementById('searchResults');
 if (searchInput) {
@@ -351,7 +357,6 @@ if (searchInput) {
   });
 }
 
-// Notification badge polling
 function pollNotifications() {
   $.get('/api/notifications/', function(data) {
     const badge = document.getElementById('notif-badge');

@@ -18,6 +18,14 @@
     </a>
     <div class="nav-spacer"></div>
     <a href="/admin/" class="nav-avatar" style="background: {{ profile.avatar_color }}" title="{{ request.user.username }}">{{ profile.avatar_initials }}</a>
+    <form method="post" action="/logout/" style="margin:0">
+      {% csrf_token %}
+      <button type="submit" class="logout-btn" title="Logout">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+      </button>
+    </form>
   </nav>
 
   <!-- Sidebar -->
