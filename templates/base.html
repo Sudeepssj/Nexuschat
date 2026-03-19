@@ -116,49 +116,7 @@
     text-decoration: none;
   }
   .nav-avatar:hover { border-color: var(--accent); }
-  .avatar-wrap {
-    position: relative;
-  }
-  .avatar-dropdown {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-3);
-    border: 1px solid var(--border-hover);
-    border-radius: 10px;
-    min-width: 160px;
-    overflow: hidden;
-    display: none;
-    z-index: 999;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-  .avatar-dropdown.open { display: block; }
-  .dropdown-header {
-    padding: 10px 14px 8px;
-    font-size: 11px;
-    color: var(--text-3);
-    border-bottom: 1px solid var(--border);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .dropdown-item {
-    display: flex; align-items: center; gap: 8px;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--text-2);
-    cursor: pointer;
-    transition: background 0.1s;
-    text-decoration: none;
-    background: transparent;
-    border: none;
-    width: 100%;
-    font-family: var(--font-body);
-  }
-  .dropdown-item:hover { background: var(--bg-4); color: var(--text-1); }
-  .dropdown-item.danger { color: var(--accent-3); }
-  .dropdown-item.danger:hover { background: rgba(255,101,132,0.1); }
-  .dropdown-item svg { width: 15px; height: 15px; flex-shrink: 0; }
+
 
   .sidebar {
     background: var(--bg-1);
@@ -394,17 +352,7 @@ function pollNotifications() {
 }
 setInterval(pollNotifications, 10000);
 
-function toggleDropdown() {
-  const d = document.getElementById('avatarDropdown');
-  if (d) d.classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  const avatar = document.getElementById('navAvatar');
-  const dropdown = document.getElementById('avatarDropdown');
-  if (dropdown && avatar && !avatar.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.classList.remove('open');
-  }
-});
+
 </script>
 {% block extra_js %}{% endblock %}
 </body>
